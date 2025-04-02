@@ -27,6 +27,7 @@ const AddFruitForm: React.FC<AddFruitFormProps> = ({ addFruit }) => {
             onChange={(e) => setFruitName(e.target.value)}
             placeholder="Enter fruit name"
             className="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
             />
             <input
             type="text"

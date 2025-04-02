@@ -1,5 +1,6 @@
 import './App.css';
-import FruitList from './components/Fruits';
+import FruitList from '../components/Fruits';
+import Calendars from '../components/CalendarEmbbeder';
 
 const App = () => {
   return (
@@ -9,6 +10,8 @@ const App = () => {
       </header>
       <main>
         <FruitList />
+
+        <Calendars />
       </main>
     </div>
   );
