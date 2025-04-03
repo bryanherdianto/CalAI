@@ -1,6 +1,7 @@
 import './App.css';
 import Calendars from './components/CalendarEmbbeder';
-import Homepage from './components/homepage';
+import LoginPage from './components/loginpage';
+import RegisterPage from './components/registerpage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -10,7 +11,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/calendars" element={<Calendars />} />
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </>
