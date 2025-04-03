@@ -2,17 +2,31 @@ import logo from '../assets/logo.svg';
 import WaveElement from '../assets/WaveElement.svg';
 import usericon from '../assets/UserIcon.svg';
 import passwordicon from '../assets/PasswordIcon.svg';
+import polygon1 from '../assets/Polygon1.svg';
+import polygon2 from '../assets/Polygon.svg';
+import polygon3 from '../assets/Polygon 3.svg';
+
+import {useNavigate} from 'react-router-dom';
 
 export default function HomePage() {
-  return (
-    <div className="bg-cover bg-[#03045E] min-h-screen w-[100vw] flex">
-      <div className="flex-1 flex flex-col items-center justify-center text-white">
-        <h1 className="text-3xl font-bold">Welcome to the Calendar App</h1>
-        <p className="mt-4">This is a simple calendar application.</p>
-        <img src={logo} draggable="false" alt="Logo" className="mt-8 w-[273.16px] h-[348px]" />
-      </div>
 
-      <div className="flex-1 justify-center bg-cover bg-[#CAF0F8] text-white">
+    const navigate = useNavigate();
+    const goToCalendar = () => {
+        navigate('/calendars');
+    };
+
+    return (
+    <div className="bg-cover bg-[#03045E] min-h-screen w-[100vw] flex">
+        <div className="flex-1 flex flex-col items-center justify-center text-white relative">
+            <img src={logo} draggable="false" alt="Logo" className="mt-8 size-70 z-5" />
+            <h1 className="font-extrabold text-6xl z-5">CalAI</h1>
+            <p className="mt-4 font-normal text-4xl z-5">Your AI Calendar Manager</p>
+            <img src={polygon1} draggable="false" alt="Polygon" className="absolute top-0 left-0 justify-start ] size-90" />
+            <img src={polygon2} draggable="false" alt="Polygon" className="absolute justify-start size-150" />
+            <img src={polygon3} draggable="false" alt="Polygon" className="absolute bottom-0 left-0 size-90" />
+        </div>
+
+        <div className="flex-1 justify-center bg-cover bg-[#CAF0F8] text-white">
         <div className="flex flex-col items-center justify-center text-center p-[2vh] bg-[#0077B6] shadow-lg">
             <h1 className="pt-[2.5vh] font-bold text-[50px]">Welcome</h1>
             <h2 className="mt-auto text-[27px]">Login to your account to continue</h2>
@@ -33,10 +47,10 @@ export default function HomePage() {
                 </div>
 
                 <div className="flex w-100 justify-end">
-                <p className="underline text-black text-2xl">New Member?</p>
+                <p className="underline text-black text-2xl hover:cursor-pointer" onClick={() => goToCalendar()} >New Member?</p>
                 </div>
 
-                <button type="submit" className="bg-[#90E0EF] text-black tracking-[5px] w-[15vw] h-[8vh] text-3xl font-semibold py-2 px-4 rounded-[100px] mt-[3vh] hover:bg-[#0077B6] hover:text-white transition duration-100 shadow-[7px_10px_5px_rgba(0,0,2,0.3)]">LOGIN</button>
+                <button type="submit" className="bg-[#90E0EF] hover:cursor-pointer text-black tracking-[5px] w-[15vw] h-[8vh] text-3xl font-semibold py-2 px-4 rounded-[100px] mt-[3vh] hover:bg-[#0077B6] hover:text-white transition duration-100 shadow-[7px_10px_5px_rgba(0,0,2,0.3)]">LOGIN</button>
             </form>
         </div>
       </div>
