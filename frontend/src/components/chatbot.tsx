@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Send } from "lucide-react"
 import { AlarmClock} from "lucide-react"
@@ -76,7 +76,7 @@ export default function ChatInterface() {
                 <div className="relative mr-8 w-[100vw]">
                     <p className="font-semibold text-3xl text-black flex p-5 pl-7">Chat Bot</p>
                 </div>
-                <Card className="md:mt-3 md:mb-8 md:ml-8 md:mr-8 md:w-[75vw] md:h-[85vh] w-[99vw] bg-[#CAF0F8]">
+                <Card className="md:mt-3 md:mb-8 md:ml-8 md:mr-8 md:w-[75vw] md:h-[85vh] w-[99vw] h-[90vh] bg-[#CAF0F8]">
                     <CardContent className="mb-0 h-[80vh] overflow-y-auto">
                         <div className="space-y-4">
                             {messages.map((message) => (
@@ -87,8 +87,8 @@ export default function ChatInterface() {
                                     <div
                                         className={`flex items-start gap-2 max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"}`}
                                     >
-                                        <Avatar className="h-8 w-8">
-                                            <AvatarFallback>{message.sender === "user" ? <AlarmClock /> : <img src={logo} className="size-6" />}</AvatarFallback>
+                                        <Avatar className="h-8 w-8" draggable="false">
+                                            <AvatarFallback >{message.sender === "user" ? <AlarmClock /> : <img src={logo} className="size-6 " draggable="false"/>}</AvatarFallback>
                                         </Avatar>
                                         <div
                                             className={`rounded-lg px-4 py-2 ${
@@ -109,13 +109,13 @@ export default function ChatInterface() {
                         </div>
                     </CardContent>
                     <CardFooter>
-                        <form onSubmit={handleSendMessage} className="flex w-full gap-2">
+                        <form onSubmit={handleSendMessage} className="flex w-full gap-2b">
                             <div className="flex items-center w-full gap-2 justify-end">
                             <Input
                                 value={newMessage}
                                 onChange={(e) => setNewMessage(e.target.value)}
                                 placeholder="Ask CalAI..."
-                                className="flex-1 rounded-[2000px] bg-[#F0F9FB] lg:h-15 md:h-10 sm:h-10 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                className="flex-1 rounded-[2000px] bg-[#F0F9FB] lg:h-15 md:h-10 sm:h-10 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent md:text-3xl sm:text-2xl lg:text-2xl h-10 pl-5"
                             />
                             <Button type="submit" size="icon" className="hover:cursor-pointer md:mr-3 sm:mr-2 hover:bg-blue-400 absolute bg-[#F0F9FB] rounded-[2000px] md:size-[3vw] sm:size-[800vh]" style={{color:"black"}}>
                                 {/* <Send className="h-4 w-4pointer" /> */}
