@@ -16,11 +16,11 @@ export default function HomePage() {
     };
 
     return (
-    <div className="bg-cover md:bg-[#03045E] bg-[#0077B6] min-h-screen w-[100vw] sm:flex">
+    <div className="bg-cover sm:bg-[#03045E] bg-[#0077B6] min-h-screen w-[100vw] sm:flex">
         <div className="flex-1 flex flex-col items-center justify-center text-white relative ">
             <img src={logo} draggable="false" alt="Logo" className="mt-8 md:size-70 size-30 z-5" />
             <h1 className="font-extrabold sm:text-6xl text-3xl z-5">CalAI</h1>
-            <p className="mt-4 font-normal text-2xl sm:text-4xl z-5 hidden md:block">Your AI Calendar Manager</p>
+            <p className="mt-4 font-normal text-2xl sm:text-4xl z-5 hidden sm:block">Your AI Calendar Manager</p>
             <img src={polygon1} draggable="false" alt="Polygon" className="absolute top-0 left-0 justify-start size-90" />
             <img src={polygon2} draggable="false" alt="Polygon" className="absolute justify-start sm:size-150" />
             <img src={polygon3} draggable="false" alt="Polygon" className="absolute bottom-0 left-0 size-90" />
