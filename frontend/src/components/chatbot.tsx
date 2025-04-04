@@ -9,8 +9,6 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Send } from "lucide-react"
 import { AlarmClock} from "lucide-react"
-import logo from '../assets/logoblack.svg'
-
 import {CalendarDays} from "lucide-react"
 
 import DashboardElement from "@/elements/DashboardElement"

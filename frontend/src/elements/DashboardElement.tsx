@@ -10,7 +10,7 @@ export default function DashboardElement() {
     };
 
     return (
-        <div className="md:flex flex-col items-center h-screen bg-[#0077B6] text-white hidden md:flex-col overflow-clip">
+        <div className="md:flex flex-col absolute items-center h-screen w-[20vw] bg-[#0077B6] text-white hidden md:flex-col overflow-clip">
             <div className="drop-shadow-[5px_5px_3px_rgba(0,0,0,0.4)] size-auto mb-4">
                 <img src={logo} alt="Logo" className="size-30" draggable="false" />
                 <p className="text-4xl font-extrabold">CalAI</p>
