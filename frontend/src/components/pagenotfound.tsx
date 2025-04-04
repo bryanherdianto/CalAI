@@ -21,7 +21,7 @@ export default function PageNotFound() {
                 </button>
             </div>
 
-            <motion.img src={polygon} alt="Polygon" className="absolute md:size-[500px] mt-1 mr-1 size-[400px min-h-[3vh] z-1 blur-[3px]"  animate={{rotate : 360}} transition={{duration:15, repeat:Infinity, ease:"linear"}} />
+            <motion.img src={polygon} alt="Polygon" className="absolute md:size-[500px] size-[350px] mt-1 mr-1 size-[400px min-h-[3vh] z-1 blur-[3px]"  animate={{rotate : 360}} transition={{duration:15, repeat:Infinity, ease:"linear"}} />
         </div>
     );
 }
