@@ -9,7 +9,9 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Send } from "lucide-react"
 import { AlarmClock} from "lucide-react"
-import logo from '../assets/logoblack.svg';
+import logo from '../assets/logoblack.svg'
+
+import {CalendarDays} from "lucide-react"
 
 import DashboardElement from "@/elements/DashboardElement"
 
@@ -88,7 +90,7 @@ export default function ChatInterface() {
                                         className={`flex items-start gap-2 max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"}`}
                                     >
                                         <Avatar className="h-8 w-8" draggable="false">
-                                            <AvatarFallback >{message.sender === "user" ? <AlarmClock /> : <img src={logo} className="size-6 " draggable="false"/>}</AvatarFallback>
+                                            <AvatarFallback >{message.sender === "user" ? <AlarmClock /> : <CalendarDays />}</AvatarFallback>
                                         </Avatar>
                                         <div
                                             className={`rounded-lg px-4 py-2 ${
