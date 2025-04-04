@@ -38,19 +38,19 @@ export default function HomePage() {
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col items-center justify-center mt-[2vh]">
                 <div className="relative">
                     <img src={usericon} draggable="false" alt="user" className="size-9 mt-[1.5vh] mx-[0.4vw] absolute" />
-                    <input type="text" placeholder="Username" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)]" required />
+                    <input type="text" placeholder="Username" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
                 
                 <div className="relative mt-[3vh]">
                     <img src={passwordicon} draggable="false" alt="pass" className="size-9 mt-[1.5vh] mx-[0.4vw] absolute" />
-                    <input type="password" placeholder="Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)]" required />
+                    <input type="password" placeholder="Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
 
                 <div className="w-100">
                     <div><p className="flex justify-end underline text-black hover:text-blue-400 text-1xl hover:cursor-pointer" onClick={() => Registerplease()}>New Member?</p></div>
                 </div>
 
-                <button type="submit" className="bg-[#90E0EF] hover:cursor-pointer text-black tracking-[5px] sm:w-[15vw] sm:h-[8vh] sm:text-3xl text-2xl w-[40vw] font-semibold py-2 px-4 rounded-[100px] mt-[3vh] hover:bg-[#0077B6] hover:text-white transition duration-100 shadow-[7px_10px_5px_rgba(0,0,2,0.3)]">LOGIN</button>
+                <button type="submit" className="bg-[#90E0EF] hover:cursor-pointer text-black tracking-[5px] sm:w-[15vw] sm:h-[8vh] sm:text-3xl text-2xl w-[40vw] font-semibold py-2 px-4 rounded-[100px] mt-[3vh] hover:bg-[#0077B6] hover:text-white transition duration-100 shadow-[7px_10px_5px_rgba(0,0,2,0.3)]" onClick={() => navigate("/chatbot")}>LOGIN</button>
             </form>
         </div>
       </div>

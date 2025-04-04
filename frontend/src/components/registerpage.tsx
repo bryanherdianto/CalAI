@@ -38,16 +38,16 @@ export default function HomePage() {
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col items-center justify-center mt-[2vh]">
                 <div className="relative">
                     <img src={usericon} draggable="false" alt="user" className="size-9 mt-[1.5vh] mx-[0.4vw] absolute" />
-                    <input type="text" placeholder="Username" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4  rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)]" required />
+                    <input type="text" placeholder="Username" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4  rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
                 
                 <div className="relative mt-[3vh]">
                     <img src={passwordicon} draggable="false" alt="pass" className="size-9 mt-[1.5vh] mx-[0.4vw] absolute" />
-                    <input type="password" placeholder="Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4  rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)]" required />
+                    <input type="password" placeholder="Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4  rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
 
                 <div className="relative mt-[3vh]">
-                    <input type="password" placeholder="Confirm Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)]" required />
+                    <input type="password" placeholder="Confirm Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
 
                 <div className="flex w-100 justify-end">
