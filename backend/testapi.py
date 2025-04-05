@@ -97,5 +97,5 @@ def main(mode):
 
 
 if __name__ == "__main__":
-    mode = "w"
+    mode = "r"
     main(mode)

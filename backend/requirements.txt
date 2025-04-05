@@ -8,3 +8,4 @@ langchain
 langchain_openai
 dateparser
 openai
+uagents

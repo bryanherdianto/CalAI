@@ -1,4 +1,6 @@
 import os
+import re
+import json
 import dateparser
 import datetime as dt
 from dotenv import load_dotenv
@@ -10,9 +12,8 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-import re
-import json
+
+from uagents import Agent, Context, Model
 
 
 def extract_json_from_response(text):
@@ -22,9 +23,11 @@ def extract_json_from_response(text):
     return json.loads(json_str)
 
 
-# Load .env
+# Load environment variables
 load_dotenv()
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
+
+# Initialize the LLM (OpenAI via LangChain)
 llm = ChatOpenAI(model_name="gpt-4o-mini-2024-07-18", temperature=0.3)
 
 
@@ -57,9 +60,8 @@ def get_intent_from_query(query: str) -> str:
 
 def extract_event_info(query: str):
     today = dt.datetime.now().strftime("%A, %Y-%m-%d")
-
     system_message = (
-        f"You are helping extract structured information to create a calendar event. Today is {today}."
+        f"You are helping extract structured information to create a calendar event. Today is {today}. "
         "If the user specifies a recurring event (e.g., 'from Monday to Friday'), return one item for each day. "
         "From the user message, extract:\n"
         "- title (or guess one)\n"
@@ -76,9 +78,8 @@ def extract_event_info(query: str):
 
 def extract_read_range(query: str):
     today = dt.datetime.now().strftime("%A, %Y-%m-%d")
-
     system_message = (
-        f"You are extracting a time range to read events from a calendar. Today is {today}."
+        f"You are extracting a time range to read events from a calendar. Today is {today}. "
         "Extract:\n"
         "- start_date (ISO format)\n"
         "- end_date (ISO format)\n"
@@ -112,9 +113,11 @@ def read_events(service, user_query):
         )
         .execute()
     )
+
     events = events_result.get("items", [])
     if not events:
         return "No events found in that range."
+
     result = f"\n📆 Events from {start.date()} to {end.date()}:\n"
     for event in events:
         start_time = event["start"].get("dateTime", event["start"].get("date"))
@@ -125,10 +128,8 @@ def read_events(service, user_query):
 def write_event(service, user_query):
     try:
         info = extract_event_info(user_query)
-
         # Normalize to a list (whether single dict or list of dicts)
         events = info if isinstance(info, list) else [info]
-
         created_links = []
 
         for event in events:
@@ -143,7 +144,6 @@ def write_event(service, user_query):
                     "timeZone": event.get("timeZone", "America/Los_Angeles"),
                 },
             }
-
             created_event = (
                 service.events()
                 .insert(calendarId="primary", body=event_payload)
@@ -153,38 +153,42 @@ def write_event(service, user_query):
             created_links.append(
                 f"✅ Created: {event['title']} on {event['start']} → [Link]({link})"
             )
-
         return "\n".join(created_links)
-
     except Exception as e:
         return f"❌ Failed to create event(s): {e}"
 
 
-def main():
+def handle_calendar_query(query: str) -> str:
     service = get_calendar_service()
+    intent = get_intent_from_query(query)
+    if intent == "read":
+        return read_events(service, query)
+    elif intent == "write":
+        return write_event(service, query)
+    else:
+        return "🤔 Sorry, I couldn't understand your intent."
 
-    while True:
-        user_input = input("\n🧑 You: ")
 
-        if user_input.lower() in ("exit", "quit"):
-            print("👋 Goodbye!")
-            break
+class Message(Model):
+    message: str
 
-        intent = get_intent_from_query(user_input)
-        print(f"🤖 Intent detected: {intent}")
 
-        try:
-            if intent == "read":
-                print("📅 Checking calendar...")
-                print(read_events(service, user_input))
-            elif intent == "write":
-                print("📝 Creating your event...")
-                print(write_event(service, user_input))
-            else:
-                print("🤔 Sorry, I couldn't understand your intent.")
-        except HttpError as e:
-            print(f"❌ Google Calendar API error: {e}")
+# Create uAgent instance for the Scheduler
+scheduler_agent = Agent(
+    name="scheduler-agent",
+    port=8000,
+    seed="scheduler-secret-seed",
+    endpoint=["http://127.0.0.1:8000/submit"],
+)
+
+
+# Define uAgent protocol handler for calendar queries
+@scheduler_agent.on_message(model=Message)
+async def scheduler_handler(ctx: Context, sender: str, msg: Message):
+    ctx.logger.info(f"📩 Received query: {msg.message}")
+    result = handle_calendar_query(msg.message)
+    await ctx.send(sender, Message(message=result))
 
 
 if __name__ == "__main__":
-    main()
+    scheduler_agent.run()
