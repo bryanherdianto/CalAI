@@ -47,6 +47,7 @@ export default function ChatInterface() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, [messages])
 
+    // edit ini buat handle message
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -78,8 +79,8 @@ export default function ChatInterface() {
         <div className="bg-[#90E0EF] min-h-screen w-screen flex flex-col md:flex-row">
             <DashboardElement />
             
-            <div className="flex-1 flex flex-col h-[90vh] pt-2 md:pt-4 px-2 md:px-6 ">
-                <h1 className="font-semibold text-2xl md:text-3xl md:justify-start text-black px-2 md:px-4 mb-2">Chat Bot</h1>
+            <div className="flex-1 flex flex-col h-[95vh] pt-2 md:pt-4 px-2 md:px-6 ">
+                <h1 className="font-semibold text-2xl md:text-3xl text-black px-2 md:px-4 md:mb-[3vh] mb-[2vh] md:text-left">Chat Bot</h1>
                 
                 <Card className="flex-1 flex flex-col bg-[#CAF0F8] overflow-hidden">
                     <CardContent className="flex-1 overflow-y-auto p-3 md:p-6">
