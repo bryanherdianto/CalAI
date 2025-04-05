@@ -24,7 +24,7 @@ export default function DashboardElement() {
                     onClick={toggleMobileMenu}
                     className="p-2 rounded-md bg-[#0077B6] text-white"
                 >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    {isMobileMenuOpen ? <X size={24} className="hover:cursor-pointer" /> : <Menu size={24} className="hover:cursor-pointer" />}
                 </button>
             </div>
 

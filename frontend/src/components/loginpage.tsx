@@ -16,18 +16,18 @@ export default function HomePage() {
     };
 
     return (
-    <div className="bg-cover sm:bg-[#03045E] bg-[#0077B6] min-h-screen w-[100vw] sm:flex">
-        <div className="flex-1 flex flex-col items-center justify-center text-white relative ">
-            <img src={logo} draggable="false" alt="Logo" className="mt-8 md:size-70 size-30 z-5" />
-            <h1 className="font-extrabold sm:text-6xl text-3xl z-5">CalAI</h1>
-            <p className="mt-4 font-normal text-2xl sm:text-4xl z-5 hidden sm:block">Your AI Calendar Manager</p>
-            <img src={polygon1} draggable="false" alt="Polygon" className="absolute top-0 left-0 justify-start size-90" />
-            <img src={polygon2} draggable="false" alt="Polygon" className="absolute justify-start sm:size-150" />
-            <img src={polygon3} draggable="false" alt="Polygon" className="absolute bottom-0 left-0 size-90" />
+    <div className="bg-cover md:bg-[#03045E] bg-[#0077B6] min-h-screen w-[100vw] flex flex-col md:flex-row overflow-x-hidden">
+        <div className="flex-1 flex flex-col items-center justify-center text-white relative">
+            <img src={logo} draggable="false" alt="Logo" className="mt-8 md:size-70 size-30 z-5 hover:cursor-pointer" onClick={() => navigate("/home")} />
+            <h1 className="font-extrabold sm:text-6xl text-3xl z-5 hover:cursor-pointer" onClick={() => navigate("/home")}>CalAI</h1>
+            <p className="mt-4 font-normal text-2xl sm:text-4xl z-5 hidden sm:block hover:cursor-pointer" onClick={() => navigate("/home")}>Your AI Calendar Manager</p>
+            <img src={polygon1} draggable="false" alt="Polygon" className="absolute top-0 left-0 justify-start hidden md:block size-90" />
+            <img src={polygon2} draggable="false" alt="Polygon" className="absolute justify-start hidden md:block sm:size-150" />
+            <img src={polygon3} draggable="false" alt="Polygon" className="absolute bottom-0 left-0 hidden md:block size-90" />
         </div>
 
         <div className="flex-1 justify-center bg-cover bg-[#CAF0F8] text-white">
-        <div className="flex flex-col items-center justify-center text-center p-[2vh] bg-[#0077B6] shadow-lg">
+        <div className="flex flex-col items-center justify-center text-center md:p-[2vh] bg-[#0077B6] shadow-lg">
             <h1 className="pt-[2.5vh] font-bold text-[50px]">Welcome</h1>
             <h2 className="mt-auto text-[27px]">Login to your account to continue</h2>
         </div>
@@ -38,12 +38,12 @@ export default function HomePage() {
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col items-center justify-center mt-[2vh]">
                 <div className="relative">
                     <img src={usericon} draggable="false" alt="user" className="size-9 mt-[1.5vh] mx-[0.4vw] absolute" />
-                    <input type="text" placeholder="Username" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
+                    <input type="text" placeholder="Username" className="p-2 bg-[#90E0EF] md:w-80 lg:w-100 w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
                 
                 <div className="relative mt-[3vh]">
                     <img src={passwordicon} draggable="false" alt="pass" className="size-9 mt-[1.5vh] mx-[0.4vw] absolute" />
-                    <input type="password" placeholder="Password" className="p-2 bg-[#90E0EF] w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
+                    <input type="password" placeholder="Password" className="p-2 bg-[#90E0EF] md:w-80 lg:w-100 w-100 h-15 text-2xl pr-[100px] pl-15 mb-4 rounded-[10px] text-black shadow-[7px_10px_5px_rgba(0,0,2,0.3)] focus:outline-none focus:border-none" required />
                 </div>
 
                 <div className="w-100">
