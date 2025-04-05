@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Send } from "lucide-react"
-import { AlarmClock} from "lucide-react"
-import {CalendarDays} from "lucide-react"
+import { Send, AlarmClock, CalendarDays } from "lucide-react"
 
 import DashboardElement from "@/elements/DashboardElement"
 
@@ -32,12 +30,23 @@ export default function ChatInterface() {
     ])
     const [newMessage, setNewMessage] = useState("")
     const messagesEndRef = useRef<HTMLDivElement>(null)
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        // Check if mobile on mount and when window resizes
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, [messages])
 
-    {/* Be ini connect ke backend deh */}
     const handleSendMessage = (e: React.FormEvent) => {
         e.preventDefault()
 
@@ -51,33 +60,29 @@ export default function ChatInterface() {
             timestamp: new Date(),
         }
 
-    setMessages((prev) => [...prev, userMessage])
-    setNewMessage("")
+        setMessages((prev) => [...prev, userMessage])
+        setNewMessage("")
 
-    setTimeout(() => {
-        const responseMessage: Message = {
-            id: (Date.now() + 1).toString(),
-            text: `You said: "${newMessage}"`,
-            sender: "abc",
-            timestamp: new Date(),
-        }
-        setMessages((prev) => [...prev, responseMessage])
-    }, 1000)
-  } 
+        setTimeout(() => {
+            const responseMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                text: `You said: "${newMessage}"`,
+                sender: "abc",
+                timestamp: new Date(),
+            }
+            setMessages((prev) => [...prev, responseMessage])
+        }, 1000)
+    } 
 
-  return (
-    <div className="bg-cover bg-[#90E0EF] min-h-screen  min-w-screen flex items-center justify-start text-white relative overflow-clip">
-        <div className="lg:flex max-w-7xl">
-            <div className="w-1/4">
-                <DashboardElement />
-            </div>
-
-            <div className="w-3/4">
-                <div className="relative mr-8 w-[100vw]">
-                    <p className="font-semibold text-3xl text-black flex p-5 pl-7">Chat Bot</p>
-                </div>
-                <Card className="md:mt-3 md:mb-8 md:ml-8 md:mr-8 md:w-[75vw] md:h-[85vh] w-[99vw] h-[90vh] bg-[#CAF0F8]">
-                    <CardContent className="mb-0 h-[80vh] overflow-y-auto">
+    return (
+        <div className="bg-[#90E0EF] min-h-screen w-screen flex flex-col md:flex-row">
+            <DashboardElement />
+            
+            <div className="flex-1 flex flex-col h-[90vh] pt-2 md:pt-4 px-2 md:px-6 ">
+                <h1 className="font-semibold text-2xl md:text-3xl md:justify-start text-black px-2 md:px-4 mb-2">Chat Bot</h1>
+                
+                <Card className="flex-1 flex flex-col bg-[#CAF0F8] overflow-hidden">
+                    <CardContent className="flex-1 overflow-y-auto p-3 md:p-6">
                         <div className="space-y-4">
                             {messages.map((message) => (
                                 <div
@@ -87,15 +92,15 @@ export default function ChatInterface() {
                                     <div
                                         className={`flex items-start gap-2 max-w-[80%] ${message.sender === "user" ? "flex-row-reverse" : "flex-row"}`}
                                     >
-                                        <Avatar className="h-8 w-8" draggable="false">
-                                            <AvatarFallback >{message.sender === "user" ? <AlarmClock /> : <CalendarDays />}</AvatarFallback>
+                                        <Avatar className="h-6 w-6 md:h-8 md:w-8" draggable="false">
+                                            <AvatarFallback>{message.sender === "user" ? <AlarmClock size={16} /> : <CalendarDays size={16} />}</AvatarFallback>
                                         </Avatar>
                                         <div
-                                            className={`rounded-lg px-4 py-2 ${
-                                                message.sender === "user" ? "bg-[#03045E] text-primary-foreground" : "bg-[#F0F9FB]"
+                                            className={`rounded-lg px-3 py-2 md:px-4 md:py-2 ${
+                                                message.sender === "user" ? "bg-[#03045E] text-white" : "bg-[#F0F9FB] text-black"
                                             }`}
                                         >
-                                            <p>{message.text}</p>
+                                            <p className="text-sm md:text-base">{message.text}</p>
                                             <p
                                                 className={`text-xs opacity-50 mt-1 flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                                             >
@@ -108,26 +113,27 @@ export default function ChatInterface() {
                             <div ref={messagesEndRef} />
                         </div>
                     </CardContent>
-                    <CardFooter>
-                        <form onSubmit={handleSendMessage} className="flex w-full gap-2b">
-                            <div className="flex items-center w-full gap-2 justify-end">
+                    
+                    <CardFooter className="p-2 md:p-4">
+                        <form onSubmit={handleSendMessage} className="flex w-full relative">
                             <Input
                                 value={newMessage}
                                 onChange={(e) => setNewMessage(e.target.value)}
                                 placeholder="Ask CalAI..."
-                                className="flex-1 rounded-[2000px] bg-[#F0F9FB] lg:h-15 md:h-10 sm:h-10 text-black placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent md:text-3xl sm:text-2xl lg:text-2xl h-10 pl-5"
+                                className="w-full rounded-full bg-[#F0F9FB] h-10 md:h-12 text-black placeholder:text-gray-500 pl-4 pr-12 text-sm md:text-base"
                             />
-                            <Button type="submit" size="icon" className="hover:cursor-pointer md:mr-3 sm:mr-2 hover:bg-blue-400 absolute bg-[#F0F9FB] rounded-[2000px] md:size-[3vw] sm:size-[800vh]" style={{color:"black"}}>
-                                {/* <Send className="h-4 w-4pointer" /> */}
-                                <Send className="size-[2vw]" />
+                            <Button 
+                                type="submit" 
+                                size="icon" 
+                                className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 md:h-10 md:w-10 bg-[#F0F9FB] hover:bg-blue-100 rounded-full flex items-center justify-center"
+                                style={{color:"black"}}
+                            >
+                                <Send className="h-4 w-4 md:h-5 md:w-5" />
                             </Button>
-
-                            </div>
                         </form>
                     </CardFooter>
                 </Card>
             </div>
         </div>
-    </div>
-);
+    );
 }
