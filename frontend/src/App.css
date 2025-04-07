@@ -1,24 +1,121 @@
 #root {
-  max-width: 1280px;
-  margin: 0 0 0 0 ;
-  padding: 0rem;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0;
   text-align: center;
-  user-select: none;
-  -webkit-user-drag: none;
   scroll-behavior: smooth;
+  font-family: "Inter", sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+body {
+  overflow-x: hidden;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+/* Refined Glassmorphism styles */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.glass-dark {
+  background: rgba(3, 4, 94, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-blue {
+  background: rgba(0, 119, 182, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.glass-light {
+  background: rgba(202, 240, 248, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* Ensure hover effects work properly */
+.glass-dark:hover {
+  background: rgba(3, 4, 94, 0.9);
+  color: white;
+}
+
+.glass-blue:hover {
+  background: rgba(0, 119, 182, 0.9);
+  color: white;
+}
+
+.glass-light:hover {
+  background: rgba(202, 240, 248, 0.9);
+  color: black;
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Responsive typography */
+@media (min-width: 1280px) {
+  .text-responsive {
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.5rem);
+  }
+
+  .heading-responsive {
+    font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+  }
+
+  .subheading-responsive {
+    font-size: clamp(1.25rem, 1.5vw + 0.75rem, 2rem);
+  }
+}
+
+/* Button hover effects */
+.btn-hover-effect {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover-effect:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.btn-hover-effect:hover:after {
+  transform: translateX(0);
+}
+
+/* Improved card styles */
+.card-improved {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-improved:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes logo-spin {
@@ -43,3 +140,4 @@
 .read-the-docs {
   color: #888;
 }
+
