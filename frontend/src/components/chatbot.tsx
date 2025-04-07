@@ -9,7 +9,7 @@ import { Card, CardContent, CardFooter } from "./ui/card"
 import { Avatar, AvatarFallback } from "./ui/avatar"
 import { Send, AlarmClock, CalendarDays } from "lucide-react"
 
-import DashboardElement from "@/elements/DashboardElement"
+import DashboardElement from "@/components/DashboardElement"
 
 type Message = {
   id: string
@@ -95,9 +95,8 @@ export default function ChatInterface() {
                       </AvatarFallback>
                     </Avatar>
                     <div
-                      className={`rounded-lg px-3 py-2 md:px-4 md:py-2 ${
-                        message.sender === "user" ? "glass-dark text-white" : "glass text-black"
-                      }`}
+                      className={`rounded-lg px-3 py-2 md:px-4 md:py-2 ${message.sender === "user" ? "glass-dark text-white" : "glass text-black"
+                        }`}
                     >
                       <p className="text-sm md:text-base lg:text-lg">{message.text}</p>
                       <p

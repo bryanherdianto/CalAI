@@ -9,7 +9,7 @@ import linkedin from "../assets/LinkedIn.svg"
 import sample from "../assets/sample.jpg"
 import bees from "../assets/Beesfixed.svg"
 import { ArrowUpFromLine } from "lucide-react"
-import { Button } from "./ui/button"
+import { Button } from "../components/ui/button"
 
 export default function HomePage() {
   const navigate = useNavigate()

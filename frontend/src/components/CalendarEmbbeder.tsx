@@ -1,32 +1,8 @@
 "use client"
 
-import DashboardElement from "@/elements/DashboardElement"
+import DashboardElement from "@/components/DashboardElement"
 
 function Calendar() {
-  // import FullCalendar from '@fullcalendar/react'
-  // import daygridplugin from '@fullcalendar/daygrid';
-  // import timegridplugin from '@fullcalendar/timegrid';
-  // import interactionplugin from '@fullcalendar/interaction'; // needed for dayClick
-  // import { useState } from 'react';
-
-  // const [events, setEvents] = useState([
-  //   { title: 'Sample Task 1', date: '2025-04-05' },
-  //   { title: 'Sample Task 2', date: '2025-04-07' },
-  // ]);
-
-  // const addTask = (title: string, date: any) => {
-  //   const newEvent = { title, date };
-  //   setEvents((prevEvents) => [...prevEvents, newEvent]);
-  // };
-
-  // // Handle event click to add new task
-  // const handleDateClick = (arg: { dateStr: any; }) => {
-  //   const title = prompt('Enter task title:');
-  //   if (title) {
-  //     addTask(title, arg.dateStr);
-  //   }
-  // };
-
   return (
     <div className="bg-[#90E0EF] min-h-screen flex flex-col w-full md:flex-row overflow-hidden max-w-[1920px] mx-auto">
       <div className="w-full md:w-64 lg:w-72 flex-shrink-0">
@@ -42,27 +18,6 @@ function Calendar() {
             sandbox="allow-scripts allow-same-origin"
             title="Google Calendar"
           ></iframe>
-
-          {/*
-          <FullCalendar
-            plugins={[daygridplugin, timegridplugin, interactionplugin]}
-            initialView="dayGridMonth"
-            headerToolbar={{
-              left: 'prev,next today',
-              center: 'title',
-              right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            }}
-            dateClick={handleDateClick}
-            initialDate={new Date()}
-            events={events}
-            editable={true}
-            selectable={true}
-            selectMirror={true}
-            dayMaxEvents={true}
-            weekends={true}
-            height="auto"
-          />
-          */}
         </div>
       </div>
     </div>

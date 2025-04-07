@@ -4,7 +4,7 @@ import bees from "../assets/Bees.svg"
 import polygon from "../assets/Polygon 7.svg"
 import { motion } from "framer-motion"
 import { useNavigate } from "react-router-dom"
-import { Button } from "./ui/button"
+import { Button } from "../components/ui/button"
 
 export default function PageNotFound() {
   const navigate = useNavigate()

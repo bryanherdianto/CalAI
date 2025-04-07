@@ -65,17 +65,15 @@ function SidebarContent({
 
       <div className="w-full mt-8 glass-light">
         <div
-          className={`h-16 w-full flex md:text-2xl items-center pl-4 hover:bg-[#03045E] hover:text-white transition duration-200 cursor-pointer ${
-            isOnPage("/chatbot") ? "font-bold text-white glass-dark" : "font-semibold text-black"
-          }`}
+          className={`h-16 w-full flex md:text-2xl items-center pl-4 hover:bg-[#03045E] hover:text-white transition duration-200 cursor-pointer ${isOnPage("/chatbot") ? "font-bold text-white glass-dark" : "font-semibold text-black"
+            }`}
           onClick={() => navigate("/chatbot")}
         >
           Chatbot
         </div>
         <div
-          className={`h-16 w-full md:text-2xl flex items-center pl-4 hover:bg-[#03045E] hover:text-white transition duration-200 cursor-pointer ${
-            isOnPage("/calendars") ? "font-bold text-white glass-dark" : "font-semibold text-black"
-          }`}
+          className={`h-16 w-full md:text-2xl flex items-center pl-4 hover:bg-[#03045E] hover:text-white transition duration-200 cursor-pointer ${isOnPage("/calendars") ? "font-bold text-white glass-dark" : "font-semibold text-black"
+            }`}
           onClick={() => navigate("/calendars")}
         >
           Calendar
