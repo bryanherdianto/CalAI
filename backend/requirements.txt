@@ -9,3 +9,5 @@ langchain_openai
 dateparser
 openai
 uagents
+fetchai
+uagents-core

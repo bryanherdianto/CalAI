@@ -3,3 +3,6 @@ venv
 credentials.json
 token.json
 .env
+private_keys.json
+uagents_core.log
+testing

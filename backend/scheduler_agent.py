@@ -4,15 +4,12 @@ import json
 import dateparser
 import datetime as dt
 from dotenv import load_dotenv
-
 from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-
 from uagents import Agent, Context, Model
 
 
@@ -33,16 +30,31 @@ llm = ChatOpenAI(model_name="gpt-4o-mini-2024-07-18", temperature=0.3)
 
 def get_calendar_service():
     creds = None
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+
+    # Load token from environment variable (as JSON string)
+    token_json = os.getenv("GOOGLE_TOKEN_JSON")
+    if token_json:
+        creds = Credentials.from_authorized_user_info(json.loads(token_json), SCOPES)
+
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            # Load credentials.json content from environment variable
+            credentials_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+            if not credentials_json:
+                raise Exception("GOOGLE_CREDENTIALS_JSON not found in environment")
+
+            creds_dict = json.loads(credentials_json)
+            flow = InstalledAppFlow.from_client_config(creds_dict, SCOPES)
             creds = flow.run_local_server(port=0)
-        with open("token.json", "w") as token:
-            token.write(creds.to_json())
+
+            print("🔐 New token generated:")
+            print(creds.to_json())
+            print(
+                "📌 To use this without re-logging in, copy the contents into your .env as:"
+            )
+            print('GOOGLE_TOKEN_JSON="<your-token-json>"\n')
     return build("calendar", "v3", credentials=creds)
 
 
@@ -176,9 +188,9 @@ class Message(Model):
 # Create uAgent instance for the Scheduler
 scheduler_agent = Agent(
     name="scheduler-agent",
-    port=8000,
+    port=8009,
     seed="scheduler-secret-seed",
-    endpoint=["http://127.0.0.1:8000/submit"],
+    endpoint=["http://127.0.0.1:8009/submit"],
 )
 
 
